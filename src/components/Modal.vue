@@ -1,5 +1,6 @@
 <template>
   <div class="modal">
+    <!-- I have two divs on modal so one can act like a background with opacity over the content and the other is the text-->
     <div class="modal__text">Loading Users</div>
     <div class="modal__background"></div>
   </div>
@@ -11,7 +12,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .modal {
   width: 100vw;

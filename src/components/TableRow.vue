@@ -1,4 +1,5 @@
 <template>
+  <!-- Here I'm using a v-for for each element received on this component, for example, name and email-->
   <div class="table-row" :class="{'even' : userIndex % 2 == 0}">
     <div
       v-for="(prop, key) in userProps"
@@ -7,6 +8,7 @@
     >
       <span v-if="!editing">{{ prop }}</span>
       <span v-if="editing">
+        <!-- I concat the key plus index so all the ids are unique-->
         <input type="text" :id="`${key+userIndex}`" :name="key" :value="prop" />
       </span>
     </div>
@@ -34,12 +36,14 @@ export default {
       this.editing = true;
     },
     saveUser() {
+      // This is a temporary object I created to update and send it to the parent component to update the store
       let updatedObj = {
         index: this.userIndex,
         rowProperties: this.userProps,
       };
       this.editing = false;
       Object.keys(this.userProps).forEach((el) => {
+        // I run over all the inputs on the row and get the value typed on them to send to my temporary object
         const currentInput = document.querySelector(`#${el+this.userIndex}`);
 
         updatedObj.rowProperties[el] = currentInput.value;
@@ -50,7 +54,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .table-row {
   display: flex;
@@ -100,7 +103,7 @@ export default {
     }
   }
   &.even{
-    background-color: rgb(251 251 251);
+    background-color: rgb(249 249 249);
   }
 }
 </style>
